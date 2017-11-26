@@ -1,0 +1,9 @@
+{
+  "name": "azure-terraform-generate",
+  "version": "1.0.0",
+  "description": "Generate terraform config from deployed azure resources.",
+  "main": "index.js",
+  "author": "Glen Mailer <glen@stainlessed.co.uk>",
+  "license": "MIT",
+  "dependencies": {}
+}
