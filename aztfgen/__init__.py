@@ -7,7 +7,7 @@ from collections import namedtuple
 import re
 import subprocess
 
-import hcl
+import aztfgen.hcl
 
 
 def main():
@@ -80,7 +80,7 @@ def lookup_resource_type(resource_type):
     if not resource_type.startswith(prefix):
         raise "Only %s resources are supported" % prefix
     type_name = resource_type[len(prefix):]
-    return importlib.import_module("resources.%s" % type_name)
+    return importlib.import_module("aztfgen.resources.%s" % type_name)
 
 
 def fetch_details(command, resource_id):

@@ -17,14 +17,16 @@ In order to dodge API calling and avoid having to deal with azure authentication
 
 ## Install
 
-I'll probably publish to pop when this is a bit more fully formed, for now you'll have to git clone.
+```sh
+pip3 install aztfgen
+```
 
 ## Usage
 
 The arguments are intended to match whatever you'll also need to pass to `terraform import` to take care of getting the current state into terraform.
 
 ```
-./aztfgen <terraform-address> <resource-id>
+aztfgen <terraform-address> <resource-id>
 ```
 
 ## License
