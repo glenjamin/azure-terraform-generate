@@ -17,18 +17,22 @@ def value(val):
     return json.dumps(val)
 
 
+primitives = [int, float, str, bool]
 def object_props(obj):
     lines = []
 
     for key, val in obj.items():
         val_type = type(val)
-        if val_type in [int, float, str, bool]:
+        if val_type in primitives:
             lines.append(primitve(key, val))
+        elif val_type is list:
+            if not val or type(val[0]) in primitives:
+                lines.append(primitve(key, val))
+            else:
+                for item in val:
+                    lines.extend(object(key, item))
         elif not val:
             lines.append(primitve(key, ""))
-        elif val_type is list:
-            for item in val:
-                lines.extend(object(key, item))
         else:
             lines.extend(object(key, val))
 
