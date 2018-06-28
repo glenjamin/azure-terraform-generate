@@ -29,6 +29,18 @@ The arguments are intended to match whatever you'll also need to pass to `terraf
 aztfgen <terraform-address> <resource-id>
 ```
 
+### Importing lots of resources
+
+If you want to do a bulk import, your best bet is to use a loop and some shell.
+
+For example:
+
+```
+az network nsg list > nsgs.json
+cat nsgs.json | jq 'map("aztfgen azurerm_network_security_group." + .name + " " + .id + " > " + .name + ".tf") | join("\n")' -r | bash -x
+cat nsgs.json | jq 'map("terraform import azurerm_network_security_group." + .name + " " + .id) | join("\n")' -r | bash
+```
+
 ## License
 
 MIT
