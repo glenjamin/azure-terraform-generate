@@ -70,8 +70,6 @@ def build_config(options):
 
     parsed = resource.build(details)
 
-    print(parsed)
-
     return hcl.build(
         options.resource_type,
         options.resource_name,
