@@ -58,7 +58,7 @@ def parse_arguments():
 
 def verify_login(subscription_id):
     subprocess.run(
-        "az account set --subscription '%s'" % subscription_id,
+        "az account set --subscription %s" % subscription_id,
         shell=True, check=True
     )
 
@@ -68,10 +68,14 @@ def build_config(options):
 
     details = fetch_details(resource.command, options.resource_id)
 
+    parsed = resource.build(details)
+
+    print(parsed)
+
     return hcl.build(
         options.resource_type,
         options.resource_name,
-        resource.build(details)
+        parsed
     )
 
 
